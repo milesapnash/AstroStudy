@@ -1,0 +1,18 @@
+.root {
+    -fx-background-color: "#4169e1";
+}
+
+.label {
+    -fx-text-fill: "white";
+    -fx-font-size: 32;
+    -fx-alignment: center;
+}
+
+.button {
+    -fx-background-color: "white";
+    -fx-border-color: "transparent";
+    -fx-font-size: 18;
+    -fx-text-fill: "#4169e1";
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}

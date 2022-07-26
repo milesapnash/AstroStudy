@@ -1,21 +1,62 @@
 package milesapnash.astrostudy;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.net.URL;
 
 public class AstroStudyApplication extends Application {
   @Override
-  public void start(Stage stage) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(AstroStudyApplication.class.getResource("main-view.fxml"));
-    Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-    stage.setTitle("AstroStudy");
-    stage.setScene(scene);
-    stage.show();
+  public void start(Stage stage) {
+    try {
+      final Parent root = new FXMLLoader(getClass().getResource("main-view.fxml")).load();
+      final Scene scene = new Scene(root);
+      final URL url = this.getClass().getResource("application.css");
+
+      if (url == null) {
+        System.out.println("CSS Resource not found.");
+        System.exit(-1);
+      }
+
+      stage.setTitle("AstroStudy");
+      stage.getIcons().add(new Image("file:icon.png"));
+      stage.setResizable(false);
+
+      scene.getStylesheets().add(url.toExternalForm());
+      stage.setScene(scene);
+      stage.show();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
+
+  public static void switchScene(ActionEvent event, String layoutFile){
+    final Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+    try {
+      final Parent root = new FXMLLoader(AstroStudyApplication.class.getResource(layoutFile)).load();
+      final Scene scene = new Scene(root);
+      final URL url = AstroStudyApplication.class.getResource("application.css");
+
+      if (url == null) {
+        System.out.println("CSS Resource not found.");
+        System.exit(-1);
+      }
+
+      scene.getStylesheets().add(url.toExternalForm());
+      stage.setScene(scene);
+      stage.show();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
 
   public static void main(String[] args) {
     launch();
