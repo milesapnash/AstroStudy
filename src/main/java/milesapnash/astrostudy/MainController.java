@@ -8,7 +8,12 @@ import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 public class MainController {
 
   @FXML
-  void toMenu(ActionEvent event) {
-    switchScene(event, "menu-view.fxml");
+  void toLogin(ActionEvent event) {
+    switchScene(event, "login");
+  }
+
+  @FXML
+  void toRegister(ActionEvent event) {
+    switchScene(event, "register");
   }
 }

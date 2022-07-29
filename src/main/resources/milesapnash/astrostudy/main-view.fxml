@@ -9,9 +9,9 @@
             fx:controller="milesapnash.astrostudy.MainController">
     <Label prefHeight="100.0" prefWidth="400.0" text="AstroStudy"/>
     <Button layoutX="75.0" layoutY="225.0" mnemonicParsing="false"
-            onAction="#toMenu" prefHeight="50.0" prefWidth="100.0"
+            onAction="#toLogin" prefHeight="50.0" prefWidth="100.0"
             text="Log in"/>
     <Button layoutX="225.0" layoutY="225.0" mnemonicParsing="false"
-            onAction="#toMenu" prefHeight="50.0" prefWidth="100.0"
+            onAction="#toRegister" prefHeight="50.0" prefWidth="100.0"
             text="Sign up"/>
 </AnchorPane>

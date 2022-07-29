@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="400.0" prefWidth="400.0"
+            xmlns="http://javafx.com/javafx/"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="milesapnash.astrostudy.RegisterController">
+    <Button id="unselectedButton" layoutX="44.0" layoutY="26.0"
+            mnemonicParsing="false" onAction="#toLogin" text="Log in"/>
+    <Button id="selectedButton" layoutX="110.0" layoutY="26.0"
+            mnemonicParsing="false" text="Sign up"/>
+    <TextField fx:id="username" layoutX="54.0" layoutY="107.0" prefHeight="25.0"
+               prefWidth="291.0" promptText="Username"/>
+    <TextField fx:id="password" layoutX="54.0" layoutY="200.0" prefHeight="25.0"
+               prefWidth="291.0" promptText="Password"/>
+    <Button layoutX="44.0" layoutY="301.0" mnemonicParsing="false"
+            onAction="#attemptLogin" prefHeight="48.0" prefWidth="311.0"
+            text="Sign Up"/>
+</AnchorPane>

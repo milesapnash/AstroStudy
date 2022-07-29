@@ -16,3 +16,20 @@
     -fx-font-weight: bold;
     -fx-alignment: center;
 }
+
+.text-field {
+    -fx-background-color: -fx-text-box-border, -fx-background;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 0;
+}
+
+#selectedButton {
+    -fx-background-color: "transparent";
+    -fx-text-fill: "white";
+    -fx-font-weight: bold;
+}
+
+#unselectedButton {
+    -fx-background-color: "transparent";
+    -fx-text-fill: "gray";
+}
