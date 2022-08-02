@@ -6,21 +6,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Objects;
 
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 
 public class LoginController {
 
   @FXML
-  TextField username;
+  TextField usernameField;
 
   @FXML
-  TextField password;
+  PasswordField passwordField;
+
+  @FXML
+  Label errorLabel;
 
   public static void login(ActionEvent event, User user){
     final Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
@@ -48,15 +52,35 @@ public class LoginController {
 
   @FXML
   void attemptLogin(ActionEvent event) {
-    if (!Objects.equals(username.getText(), "")){
-      int userID = Integer.parseInt(username.getText());
-      User u = new User("User " + userID, userID);
+    String username = usernameField.getText();
+    String password = passwordField.getText();
+    errorLabel.setText("");
+
+    if (username.isEmpty()){
+      errorLabel.setText("Username cannot be blank");
+      return;
+    }
+    if (password.isEmpty()){
+      errorLabel.setText("Password cannot be blank");
+      return;
+    }
+
+    // TODO: API Request- Get hashed + salted password for username, compare
+    if (true) {
+      User u = new User(usernameField.getText() + passwordField.getText(), 0);
       login(event, u);
+    } else {
+      errorLabel.setText("Either username or password incorrect");
     }
   }
 
   @FXML
   void toSignUp(ActionEvent event) {
     switchScene(event, "register");
+  }
+
+  @FXML
+  void forgottenPassword(ActionEvent event) {
+    // TODO: Reset Password system
   }
 }

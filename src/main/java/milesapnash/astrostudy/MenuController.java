@@ -9,18 +9,16 @@ import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 public class MenuController {
 
   @FXML
-  private Label userid;
+  private Label userLabel;
+  private User currentUser;
 
   @FXML
-  void toMain(ActionEvent event) {
+  void toStart(ActionEvent event) {
     switchScene(event, "main");
   }
 
   public void setUser(User user){
-    display(user);
-  }
-
-  private void display(User user) {
-    userid.setText(user.toString());
+    currentUser = user;
+    userLabel.setText("Welcome, " + user.toString());
   }
 }

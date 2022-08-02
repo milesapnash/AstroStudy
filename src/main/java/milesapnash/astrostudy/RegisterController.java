@@ -2,55 +2,70 @@ package milesapnash.astrostudy;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
+import static milesapnash.astrostudy.LoginController.login;
 
 public class RegisterController {
 
   @FXML
-  TextField username;
-
+  TextField usernameField;
   @FXML
-  TextField password;
+  TextField emailField;
+  @FXML
+  TextField passwordField;
 
-  public static void login(ActionEvent event, User user){
-    final Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
-    try {
-      final FXMLLoader loader = new FXMLLoader(AstroStudyApplication.class.getResource("menu-view.fxml"));
-      final Parent root = loader.load();
-      final Scene scene = new Scene(root);
-      final URL url = AstroStudyApplication.class.getResource("application.css");
-
-      if (url == null) {
-        System.out.println("CSS Resource not found.");
-        System.exit(-1);
-      }
-
-      MenuController menuController = loader.getController();
-      menuController.setUser(user);
-
-      scene.getStylesheets().add(url.toExternalForm());
-      stage.setScene(scene);
-      stage.show();
-    } catch (Exception e) {
-      e.printStackTrace();
+  private boolean validUsername(String username){
+    if (username.isEmpty()){
+      // Blank error message
+      return false;
     }
+
+    if (username.length() < 4 || username.length() > 20){
+      //Length error message
+      return false;
+    }
+    return true;
+  }
+
+  private boolean validEmail(String email){
+    if (email.isEmpty()){
+      // Blank error message
+      return false;
+    }
+
+    final Matcher emailMatcher = Pattern.compile("^(.+)@(.+)$").matcher(email);
+    if (!emailMatcher.find()){
+      // Not email error message
+      return false;
+    }
+
+    return true;
+  }
+
+  private boolean validPassword(String password){
+    //Length/prescence check + real time checker
+
+    final Matcher passwordMatcher = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])").matcher(password);
+    if (!passwordMatcher.find()){
+      // Error message
+      return false;
+    }
+    return true;
   }
 
   @FXML
-  void attemptLogin(ActionEvent event) {
-    if (!Objects.equals(username.getText(), "")){
-      int userID = Integer.parseInt(username.getText());
-      User u = new User("User " + userID, userID);
+  void attemptRegister(ActionEvent event) {
+    final String username = usernameField.getText();
+    if (validUsername(username) && validEmail(emailField.getText()) && validPassword(passwordField.getText())){
+      // Check username doesn't already exist + email not in use
+      // Attempt to create account
+
+      User u = new User(username, 0);
       login(event, u);
     }
   }
