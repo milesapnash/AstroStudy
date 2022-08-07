@@ -10,14 +10,14 @@
             mnemonicParsing="false" onAction="#toLogin" text="Log in"/>
     <Button id="selectedButton" layoutX="110.0" layoutY="26.0"
             mnemonicParsing="false" text="Sign up"/>
-    <TextField fx:id="usernameField" layoutX="53.0" layoutY="80.0"
+    <TextField fx:id="usernameField" layoutX="54.0" layoutY="80.0"
                prefHeight="25.0" prefWidth="291.0"
                promptText="Enter your username"/>
     <Label id="subtitle" layoutX="54.0" layoutY="120.0" text="USERNAME"/>
     <TextField fx:id="emailField" layoutX="54.0" layoutY="145.0"
                prefHeight="25.0" prefWidth="291.0"
                promptText="Enter your email address"/>
-    <Label id="subtitle" layoutX="51.0" layoutY="185.0" text="EMAIL"/>
+    <Label id="subtitle" layoutX="54.0" layoutY="185.0" text="EMAIL"/>
     <PasswordField fx:id="passwordField" layoutX="54.0" layoutY="210"
                    prefHeight="25.0" prefWidth="290.0"
                    promptText="Enter your password"/>

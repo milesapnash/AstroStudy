@@ -19,10 +19,8 @@ public class LoginController {
 
   @FXML
   TextField usernameField;
-
   @FXML
   PasswordField passwordField;
-
   @FXML
   Label errorLabel;
 
@@ -81,6 +79,6 @@ public class LoginController {
 
   @FXML
   void forgottenPassword(ActionEvent event) {
-    // TODO: Reset Password system
+    switchScene(event, "reset-password");
   }
 }
