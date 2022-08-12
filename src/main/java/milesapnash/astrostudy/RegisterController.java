@@ -2,13 +2,13 @@ package milesapnash.astrostudy;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
-import static milesapnash.astrostudy.LoginController.login;
 
 public class RegisterController {
 
@@ -18,41 +18,54 @@ public class RegisterController {
   TextField emailField;
   @FXML
   TextField passwordField;
+  @FXML
+  Label usernameErrorLabel;
+  @FXML
+  Label emailErrorLabel;
+  @FXML
+  Label passwordErrorLabel;
+
 
   private boolean validUsername(String username){
+    usernameErrorLabel.setText("");
     if (username.isEmpty()){
-      // Blank error message
+      usernameErrorLabel.setText("Cannot be blank");
       return false;
     }
-
     if (username.length() < 4 || username.length() > 20){
-      //Length error message
+      usernameErrorLabel.setText("Must be between 4 and 20 characters");
       return false;
     }
     return true;
   }
 
   private boolean validEmail(String email){
+    emailErrorLabel.setText("");
     if (email.isEmpty()){
-      // Blank error message
+      emailErrorLabel.setText("Cannot be blank");
       return false;
     }
-
     final Matcher emailMatcher = Pattern.compile("^(.+)@(.+)$").matcher(email);
     if (!emailMatcher.find()){
-      // Not email error message
+      emailErrorLabel.setText("Must be a valid address");
       return false;
     }
-
     return true;
   }
 
   private boolean validPassword(String password){
-    //Length/prescence check + real time checker
-
-    final Matcher passwordMatcher = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])").matcher(password);
+    passwordErrorLabel.setText("");
+    if (password.isEmpty()){
+      passwordErrorLabel.setText("Cannot be blank");
+      return false;
+    }
+    if (password.length() < 4 || password.length() > 20){
+      passwordErrorLabel.setText("Must be between 4 and 20 characters");
+      return false;
+    }
+    final Matcher passwordMatcher = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])").matcher(password);
     if (!passwordMatcher.find()){
-      // Error message
+      passwordErrorLabel.setText("Must contain upper, lower and number");
       return false;
     }
     return true;
@@ -61,12 +74,14 @@ public class RegisterController {
   @FXML
   void attemptRegister(ActionEvent event) {
     final String username = usernameField.getText();
-    if (validUsername(username) && validEmail(emailField.getText()) && validPassword(passwordField.getText())){
+    final boolean uValid = validUsername(username);
+    final boolean eValid = validEmail(emailField.getText());
+    final boolean pValid = validPassword(passwordField.getText());
+    if (uValid && eValid && pValid){
       // Check username doesn't already exist + email not in use
       // Attempt to create account
-
       User u = new User(username, 0);
-      login(event, u);
+      switchScene(event, "menu", u);
     }
   }
 

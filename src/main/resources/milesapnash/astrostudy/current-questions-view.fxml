@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="milesapnash.astrostudy.CurrentQuestionsController">
+    <Label prefHeight="100.0" prefWidth="400.0" text="Questions"/>
+    <Button fx:id="newQuestion" layoutX="275.0" layoutY="90.0" mnemonicParsing="false"
+            onAction="#toNew" text="🕮 New" visible="false"/>
+    <Button id="selectedButton" mnemonicParsing="false" onAction="#toMenu" prefHeight="35.0"
+            prefWidth="50.0" text="🠔"/>
+    <ComboBox fx:id="topicBox" layoutX="25.0" layoutY="100.0" prefWidth="150.0" promptText="Topic"
+              visibleRowCount="3"/>
+    <ListView fx:id="questionList" layoutX="25.0" layoutY="150.0" prefHeight="150.0"
+              prefWidth="350.0" visible="false"/>
+    <Button fx:id="editQuestion" layoutX="50.0" layoutY="325.0" mnemonicParsing="false"
+            onAction="#toEdit" prefHeight="25.0" prefWidth="125.0" text="Edit" visible="false"/>
+    <Button fx:id="deleteQuestion" layoutX="225.0" layoutY="325.0" mnemonicParsing="false"
+            onAction="#delete" prefHeight="25.0" prefWidth="125.0" text="Delete" visible="false"/>
+</AnchorPane>

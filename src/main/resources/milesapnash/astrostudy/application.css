@@ -17,6 +17,12 @@
     -fx-alignment: center;
 }
 
+.combo-box {
+    -fx-background-color: "white";
+    -fx-border-color: "transparent";
+    -fx-alignment: center-left;
+}
+
 .text-field {
     -fx-font-size: 14;
     -fx-text-fill: "white";

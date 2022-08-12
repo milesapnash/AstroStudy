@@ -13,11 +13,11 @@
            prefWidth="400.0" text="Label"/>
     <Button layoutX="120.0" layoutY="140.0" mnemonicParsing="false"
             prefHeight="50.0" prefWidth="160.0" text="Quick Test"
-            wrapText="true"/>
+            wrapText="true" onAction="#startQuickTest"/>
     <Button layoutX="120.0" layoutY="220.0" mnemonicParsing="false"
             prefHeight="50.0" prefWidth="160.0" text="Select Topic"
-            wrapText="true"/>
+            wrapText="true" onAction="#toTopicTest"/>
     <Button layoutX="120.0" layoutY="300.0" mnemonicParsing="false"
-            prefHeight="50.0" prefWidth="160.0" text="Add Questions"
-            wrapText="true"/>
+            prefHeight="50.0" prefWidth="160.0" text="Edit Questions"
+            wrapText="true" onAction="#toCurrentQuestions"/>
 </AnchorPane>
