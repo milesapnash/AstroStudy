@@ -10,6 +10,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AstroStudyApplication extends Application {
   public static void main(String[] args) {
@@ -86,5 +88,10 @@ public class AstroStudyApplication extends Application {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  public static boolean validateEmail(String input){
+    final Matcher emailMatcher = Pattern.compile("^(.+)@(.+)$").matcher(input);
+    return emailMatcher.find();
   }
 }

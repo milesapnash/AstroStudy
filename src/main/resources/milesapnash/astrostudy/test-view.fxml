@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.Button?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="milesapnash.astrostudy.TestViewController"
-            prefHeight="400.0" prefWidth="400.0">
-    <Button layoutX="44.0" layoutY="301.0" mnemonicParsing="false"
-            onAction="#toMenu" prefHeight="48.0" prefWidth="311.0"
-            text="FINISH"/>
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="milesapnash.astrostudy.TestViewController">
+    <Label id="subtitle" fx:id="numberLabel" layoutX="14.0" layoutY="14.0"/>
+    <Label id="subtitle" fx:id="questionLabel" layoutY="41.0"
+           prefHeight="18.0" prefWidth="400.0"/>
+    <Button fx:id="answerButton1" layoutX="45.0" layoutY="100.0" mnemonicParsing="false"
+            onAction="#button1Pressed" prefHeight="90.0" prefWidth="150.0"/>
+    <Button fx:id="answerButton3" layoutX="45.0" layoutY="200.0" mnemonicParsing="false"
+            onAction="#button3Pressed" prefHeight="90.0" prefWidth="150.0"/>
+    <Button fx:id="answerButton2" layoutX="205.0" layoutY="100.0" mnemonicParsing="false"
+            onAction="#button2Pressed" prefHeight="90.0" prefWidth="150.0"/>
+    <Button fx:id="answerButton4" layoutX="205.0" layoutY="200.0" mnemonicParsing="false"
+            onAction="#button4Pressed" prefHeight="90.0" prefWidth="150.0"/>
+    <Button fx:id="progressButton" layoutX="45.0" layoutY="300.0" mnemonicParsing="false"
+            onAction="#toNext" prefHeight="48.0" prefWidth="311.0" text="NEXT"/>
 </AnchorPane>

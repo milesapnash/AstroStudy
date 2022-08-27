@@ -3,9 +3,7 @@ package milesapnash.astrostudy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.util.Pair;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
@@ -39,8 +37,8 @@ public class MenuController extends DataController {
 
   @FXML
   void startQuickTest(ActionEvent event){
-    List<Question> quickQuestions = new ArrayList<>();
-    Pair<User, List<Question>> testData = new Pair<>(currentUser, quickQuestions);
+    List<Question> quickQuestions = List.of(Question.exampleQuestion());
+    TestData testData = new TestData(currentUser, quickQuestions);
     switchScene(event, "test", testData);
   }
 }

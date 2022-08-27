@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
+import static milesapnash.astrostudy.AstroStudyApplication.validateEmail;
 
 public class RegisterController {
 
@@ -45,8 +46,7 @@ public class RegisterController {
       emailErrorLabel.setText("Cannot be blank");
       return false;
     }
-    final Matcher emailMatcher = Pattern.compile("^(.+)@(.+)$").matcher(email);
-    if (!emailMatcher.find()){
+    if (validateEmail(email)){
       emailErrorLabel.setText("Must be a valid address");
       return false;
     }

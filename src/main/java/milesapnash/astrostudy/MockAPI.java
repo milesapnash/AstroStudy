@@ -24,4 +24,9 @@ public class MockAPI {
     return topics;
   }
 
+  public static void sendResults(List<Boolean> results, User user){}
+
+  public static void sendResetRequest(String email){}
+
+  public static void deleteQuestion(int id){}
 }

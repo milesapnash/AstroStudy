@@ -5,9 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.util.Pair;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
@@ -31,9 +29,8 @@ public class SelectTopicViewController extends DataController {
 
   @FXML
   public void startTopicTest(ActionEvent event){
-    List<Question> topicQuestions = new ArrayList<>();
-
-    Pair<User, List<Question>> testData = new Pair<>(currentUser, topicQuestions);
+    List<Question> topicQuestions = List.of(Question.exampleQuestion());
+    TestData testData = new TestData(currentUser, topicQuestions);
     switchScene(event, "test", testData);
   }
 }
