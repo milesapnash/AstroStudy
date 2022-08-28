@@ -1,9 +1,10 @@
-package milesapnash.astrostudy;
+package milesapnash.astrostudy.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import milesapnash.astrostudy.User;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

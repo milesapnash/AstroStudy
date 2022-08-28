@@ -1,4 +1,4 @@
-package milesapnash.astrostudy;
+package milesapnash.astrostudy.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
+import milesapnash.astrostudy.TestData;
+import milesapnash.astrostudy.User;
 
 import java.util.Objects;
 
@@ -28,7 +30,7 @@ public class SelectTopicViewController extends DataController {
   Button startButton;
 
   @Override
-  <T> void parseData(T data) {
+  public <T> void parseData(T data) {
     currentUser = (User) data;
 
     topicBox.setItems(topics);

@@ -1,10 +1,11 @@
-package milesapnash.astrostudy;
+package milesapnash.astrostudy.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import milesapnash.astrostudy.User;
 
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 

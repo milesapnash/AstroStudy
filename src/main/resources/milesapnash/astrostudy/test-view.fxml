@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="milesapnash.astrostudy.TestViewController">
+            fx:controller="milesapnash.astrostudy.controllers.TestViewController">
     <Label id="subtext" fx:id="numberLabel" layoutX="14.0" layoutY="14.0"/>
     <Label id="subtext" fx:id="questionLabel" layoutY="41.0"
            prefHeight="18.0" prefWidth="400.0"/>

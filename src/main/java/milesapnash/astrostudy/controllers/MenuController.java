@@ -1,8 +1,11 @@
-package milesapnash.astrostudy;
+package milesapnash.astrostudy.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import milesapnash.astrostudy.Question;
+import milesapnash.astrostudy.TestData;
+import milesapnash.astrostudy.User;
 
 import java.util.List;
 
@@ -16,7 +19,7 @@ public class MenuController extends DataController {
   private Label userLabel;
 
   @Override
-  <T> void parseData(T data) {
+  public <T> void parseData(T data) {
     currentUser = (User) data;
     userLabel.setText("Welcome, " + currentUser.toString());
   }

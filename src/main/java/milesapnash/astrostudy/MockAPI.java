@@ -33,9 +33,15 @@ public class MockAPI {
     return questions.get(topic).remove(new Question(null,null,null,topic,id));
   }
 
-  public static void addQuestion(Question question){}
+  public static boolean addQuestion(Question question){
+    return questions.get(question.topic()).add(question);
+  }
 
-  public static void editQuestion(Question question){}
+  public static void editQuestion(Question question){
+    ArrayList<Question> topicQuestions = questions.get(question.topic());
+    topicQuestions.remove(new Question(null,null,null,question.topic(),question.id()));
+    topicQuestions.add(question);
+  }
 
   public static List<Question> getTopicQuestions(String topic, int maxQs){
     List<Question> topicQuestions = getAllTopicQuestions(topic);

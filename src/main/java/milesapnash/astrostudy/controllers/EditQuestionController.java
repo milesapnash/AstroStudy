@@ -1,4 +1,4 @@
-package milesapnash.astrostudy;
+package milesapnash.astrostudy.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import milesapnash.astrostudy.*;
 
 import java.util.Objects;
 
@@ -54,7 +55,7 @@ public class EditQuestionController extends DataController {
     field.setText(original);
     field.textProperty().addListener((observable, oldValue, newValue) -> {
       String text = field.getText();
-      if (Objects.equals(text, "")){
+      if (text.isEmpty()){
         field.setStyle("-fx-border-color: #ff0000");
       } else if (Objects.equals(text, original)) {
         field.setStyle("-fx-border-color: #ffffff");
@@ -71,11 +72,16 @@ public class EditQuestionController extends DataController {
 
   @FXML
   public void attemptUpdate(ActionEvent event){
-    if (currentQuestion.id() == -1){
-      MockAPI.addQuestion(new Question(questionField.getText(), answerField.getText(), new String[]{option1Field.getText(), option2Field.getText(), option3Field.getText()},topicBox.getSelectionModel().getSelectedItem(), -1));
-    } else {
-      MockAPI.editQuestion(new Question(questionField.getText(), answerField.getText(), new String[]{option1Field.getText(), option2Field.getText(), option3Field.getText()},topicBox.getSelectionModel().getSelectedItem(), currentQuestion.id()));
+    if (!(questionField.getText().isEmpty() || answerField.getText().isEmpty() || option1Field.getText().isEmpty() || option2Field.getText().isEmpty() || option3Field.getText().isEmpty())){
+      if (currentQuestion.id() == -1){
+        MockAPI.addQuestion(new Question(questionField.getText(), answerField.getText(), new String[]{option1Field.getText(), option2Field.getText(), option3Field.getText()},topicBox.getSelectionModel().getSelectedItem(), -1));
+      } else {
+        if (!Objects.equals(questionField.getText(), currentQuestion.text()) || !Objects.equals(answerField.getText(), currentQuestion.answer()) || !Objects.equals(option1Field.getText(), currentQuestion.options()[0])
+         || !Objects.equals(option2Field.getText(), currentQuestion.options()[1]) || !Objects.equals(option3Field.getText(), currentQuestion.options()[2])){
+          MockAPI.editQuestion(new Question(questionField.getText(), answerField.getText(), new String[]{option1Field.getText(), option2Field.getText(), option3Field.getText()},topicBox.getSelectionModel().getSelectedItem(), currentQuestion.id()));
+        }
+      }
+      switchScene(event, "current-questions", currentUser);
     }
-    switchScene(event, "current-questions", currentUser);
   }
 }

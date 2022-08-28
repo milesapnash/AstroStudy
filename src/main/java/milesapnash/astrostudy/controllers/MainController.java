@@ -1,4 +1,4 @@
-package milesapnash.astrostudy;
+package milesapnash.astrostudy.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

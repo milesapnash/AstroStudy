@@ -5,25 +5,25 @@
 <AnchorPane prefHeight="400.0" prefWidth="400.0"
             xmlns="http://javafx.com/javafx/"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="milesapnash.astrostudy.LoginController">
+            fx:controller="milesapnash.astrostudy.controllers.LoginController">
+    <Label fx:id="errorLabel" alignment="CENTER" layoutY="85.0"
+           prefHeight="18.0" prefWidth="400.0"/>
+    <Label id="subtitle" layoutX="54.0" layoutY="160.0" text="USERNAME"/>
+    <Label id="subtitle" layoutX="54.0" layoutY="230.0" text="PASSWORD"/>
     <Button id="selectedButton" layoutX="44.0" layoutY="26.0"
             mnemonicParsing="false" text="Log in"/>
     <Button id="unselectedButton" layoutX="110.0" layoutY="26.0"
             mnemonicParsing="false" onAction="#toSignUp" text="Sign up"/>
-    <Label fx:id="errorLabel" alignment="CENTER" layoutY="85.0"
-           prefHeight="18.0" prefWidth="400.0"/>
-    <TextField fx:id="usernameField" layoutX="54.0" layoutY="120.0"
-               prefHeight="25.0" prefWidth="290.0"
-               promptText="Enter your username" onAction="#attemptLogin"/>
-    <Label id="subtitle" layoutX="54.0" layoutY="160.0" text="USERNAME"/>
-    <PasswordField fx:id="passwordField" layoutX="54.0" layoutY="190"
-                   prefHeight="25.0" prefWidth="290.0"
-                   promptText="Enter your password" onAction="#attemptLogin"/>
-    <Label id="subtitle" layoutX="54.0" layoutY="230.0" text="PASSWORD"/>
     <Button id="forgottenButton" layoutX="260.0" layoutY="250.0"
             mnemonicParsing="false" onAction="#forgottenPassword"
             text="Forgotten?"/>
     <Button layoutX="44.0" layoutY="301.0" mnemonicParsing="false"
             onAction="#attemptLogin" prefHeight="48.0" prefWidth="311.0"
             text="Log In"/>
+    <TextField fx:id="usernameField" layoutX="54.0" layoutY="120.0"
+               prefHeight="25.0" prefWidth="290.0"
+               promptText="Enter your username" onAction="#attemptLogin"/>
+    <PasswordField fx:id="passwordField" layoutX="54.0" layoutY="190"
+                   prefHeight="25.0" prefWidth="290.0"
+                   promptText="Enter your password" onAction="#attemptLogin"/>
 </AnchorPane>

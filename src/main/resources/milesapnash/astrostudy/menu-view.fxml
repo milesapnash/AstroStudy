@@ -5,12 +5,12 @@
 <AnchorPane prefHeight="400.0" prefWidth="400.0"
             xmlns="http://javafx.com/javafx/"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="milesapnash.astrostudy.MenuController">
+            fx:controller="milesapnash.astrostudy.controllers.MenuController">
+    <Label fx:id="userLabel" alignment="CENTER" layoutY="60.0" prefHeight="18.0"
+           prefWidth="400.0" text="Label"/>
     <Button id="selectedButton" layoutX="300.0" layoutY="14.0" mnemonicParsing="false"
             onAction="#toStart" prefHeight="26.0" prefWidth="100.0"
             text="Log Out" wrapText="true"/>
-    <Label fx:id="userLabel" alignment="CENTER" layoutY="60.0" prefHeight="18.0"
-           prefWidth="400.0" text="Label"/>
     <Button layoutX="120.0" layoutY="140.0" mnemonicParsing="false"
             prefHeight="50.0" prefWidth="160.0" text="Quick Test"
             wrapText="true" onAction="#startQuickTest"/>

@@ -1,9 +1,10 @@
-package milesapnash.astrostudy;
+package milesapnash.astrostudy.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import milesapnash.astrostudy.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class TestViewController extends DataController {
   Button progressButton;
 
   @Override
-  <T> void parseData(T data) {
+  public <T> void parseData(T data) {
     TestData testData = (TestData) data;
     currentUser = testData.user();
     questions = testData.questions();

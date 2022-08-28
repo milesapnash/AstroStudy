@@ -4,17 +4,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="milesapnash.astrostudy.EditQuestionController">
+            fx:controller="milesapnash.astrostudy.controllers.EditQuestionController">
     <Label id="subtitle" layoutX="32.0" layoutY="49.0" text="TOPIC"/>
     <Label id="subtitle" layoutX="21.0" layoutY="109.0" text="QUESTION"/>
     <Label id="subtitle" layoutX="26.0" layoutY="154.0" text="ANSWER"/>
     <Label id="subtitle" layoutX="25.0" layoutY="199.0" text="OPTIONS"/>
-    <ComboBox fx:id="topicBox" layoutX="135.0" layoutY="45.0" prefWidth="150.0" promptText="Topic"
-              visibleRowCount="3"/>
     <Button id="selectedButton" mnemonicParsing="false" onAction="#toQuestions" prefHeight="35.0"
             prefWidth="50.0" text="🠔"/>
     <Button layoutX="125.0" layoutY="340.0" mnemonicParsing="false" onAction="#attemptUpdate"
             prefHeight="25.0" prefWidth="169.0" text="Finish"/>
+    <ComboBox fx:id="topicBox" layoutX="135.0" layoutY="45.0" prefWidth="150.0" promptText="Topic"
+              visibleRowCount="3"/>
     <TextField fx:id="questionField" layoutX="96.0" layoutY="105.0" prefHeight="25.0"
                prefWidth="286.0" promptText="Question"/>
     <TextField fx:id="answerField" layoutX="96.0" layoutY="150.0" prefHeight="25.0"
