@@ -12,6 +12,14 @@ import java.util.Random;
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 
 public class TestViewController extends DataController {
+  private List<Question> questions;
+  private final List<Boolean> results = new ArrayList<>();
+  private final Button[] buttons = new Button[4];
+  private boolean chosen = false;
+  private User currentUser;
+  private int answerIndex = 4;
+  private int currentIndex = 1;
+
   @FXML
   Label numberLabel;
   @FXML
@@ -26,13 +34,6 @@ public class TestViewController extends DataController {
   Button answerButton4;
   @FXML
   Button progressButton;
-  private List<Question> questions;
-  private final List<Boolean> results = new ArrayList<>();
-  private final Button[] buttons = new Button[4];
-  private boolean chosen = false;
-  private User currentUser;
-  private int answerIndex = 4;
-  private int currentIndex = 1;
 
   @Override
   <T> void parseData(T data) {
@@ -64,7 +65,7 @@ public class TestViewController extends DataController {
       if (i == answerIndex){
         buttons[i].setText(question.answer());
       } else {
-        buttons[i].setText(question.options().get(option));
+        buttons[i].setText(question.options()[option]);
         option++;
       }
       buttons[i].setStyle("-fx-background-color: #ffffff");
@@ -85,12 +86,16 @@ public class TestViewController extends DataController {
 
   @FXML
   public void button1Pressed(ActionEvent event){checkAnswer(0);}
+
   @FXML
   public void button2Pressed(ActionEvent event){checkAnswer(1);}
+
   @FXML
   public void button3Pressed(ActionEvent event){checkAnswer(2);}
+
   @FXML
   public void button4Pressed(ActionEvent event){checkAnswer(3);}
+
   @FXML
   public void toNext(ActionEvent event){
     if (currentIndex == questions.size()){
@@ -98,6 +103,7 @@ public class TestViewController extends DataController {
       switchScene(event, "menu", currentUser);
     } else {
       currentIndex++;
+      chosen = false;
       setupQuestion();
     }
   }

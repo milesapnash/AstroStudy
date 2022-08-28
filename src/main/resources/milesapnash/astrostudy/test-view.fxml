@@ -5,8 +5,8 @@
 <AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="milesapnash.astrostudy.TestViewController">
-    <Label id="subtitle" fx:id="numberLabel" layoutX="14.0" layoutY="14.0"/>
-    <Label id="subtitle" fx:id="questionLabel" layoutY="41.0"
+    <Label id="subtext" fx:id="numberLabel" layoutX="14.0" layoutY="14.0"/>
+    <Label id="subtext" fx:id="questionLabel" layoutY="41.0"
            prefHeight="18.0" prefWidth="400.0"/>
     <Button fx:id="answerButton1" layoutX="45.0" layoutY="100.0" mnemonicParsing="false"
             onAction="#button1Pressed" prefHeight="90.0" prefWidth="150.0"/>

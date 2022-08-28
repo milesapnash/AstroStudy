@@ -10,6 +10,6 @@
     <Label id="selectedButton" prefHeight="100.0" prefWidth="400.0" text="Choose topic"/>
     <ComboBox fx:id="topicBox" layoutX="124.0" layoutY="174.0" prefWidth="150.0" promptText="Topic"
               visibleRowCount="3"/>
-    <Button layoutX="44.0" layoutY="301.0" mnemonicParsing="false" prefHeight="48.0"
-            prefWidth="311.0" text="Start Test" onAction="#startTopicTest"/>
+    <Button fx:id="startButton" layoutX="44.0" layoutY="301.0" mnemonicParsing="false" onAction="#startTopicTest"
+            prefHeight="48.0" prefWidth="311.0" text="Start Test" visible="false"/>
 </AnchorPane>

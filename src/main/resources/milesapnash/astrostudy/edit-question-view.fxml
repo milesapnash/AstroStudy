@@ -5,23 +5,24 @@
 <AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="milesapnash.astrostudy.EditQuestionController">
+    <Label id="subtitle" layoutX="32.0" layoutY="49.0" text="TOPIC"/>
+    <Label id="subtitle" layoutX="21.0" layoutY="109.0" text="QUESTION"/>
+    <Label id="subtitle" layoutX="26.0" layoutY="154.0" text="ANSWER"/>
+    <Label id="subtitle" layoutX="25.0" layoutY="199.0" text="OPTIONS"/>
+    <ComboBox fx:id="topicBox" layoutX="135.0" layoutY="45.0" prefWidth="150.0" promptText="Topic"
+              visibleRowCount="3"/>
     <Button id="selectedButton" mnemonicParsing="false" onAction="#toQuestions" prefHeight="35.0"
             prefWidth="50.0" text="🠔"/>
-    <TextField fx:id="questionField" layoutX="96.0" layoutY="109.0" prefHeight="25.0"
+    <Button layoutX="125.0" layoutY="340.0" mnemonicParsing="false" onAction="#attemptUpdate"
+            prefHeight="25.0" prefWidth="169.0" text="Finish"/>
+    <TextField fx:id="questionField" layoutX="96.0" layoutY="105.0" prefHeight="25.0"
                prefWidth="286.0" promptText="Question"/>
-    <TextField fx:id="answerField" layoutX="96.0" layoutY="148.0" prefHeight="25.0"
+    <TextField fx:id="answerField" layoutX="96.0" layoutY="150.0" prefHeight="25.0"
                prefWidth="286.0" promptText="Answer"/>
-    <TextField fx:id="option1Field" layoutX="97.0" layoutY="192.0" prefHeight="25.0"
+    <TextField fx:id="option1Field" layoutX="97.0" layoutY="195.0" prefHeight="25.0"
                prefWidth="286.0" promptText="Option 1"/>
-    <TextField fx:id="option2Field" layoutX="97.0" layoutY="227.0" prefHeight="25.0"
+    <TextField fx:id="option2Field" layoutX="97.0" layoutY="230.0" prefHeight="25.0"
                prefWidth="286.0" promptText="Option 2"/>
     <TextField fx:id="option3Field" layoutX="97.0" layoutY="265.0" prefHeight="25.0"
                prefWidth="286.0" promptText="Option 3"/>
-    <Label id="subtitle" layoutX="21.0" layoutY="113.0" text="QUESTION"/>
-    <Label id="subtitle" layoutX="25.0" layoutY="152.0" text="ANSWER"/>
-    <Label id="subtitle" layoutX="25.0" layoutY="196.0" text="OPTIONS"/>
-    <Button layoutX="125.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0"
-            prefWidth="169.0" text="Finish"/>
-    <ComboBox fx:id="topicBox" layoutX="125.0" layoutY="45.0" prefWidth="150.0" promptText="Topic"
-              visibleRowCount="3"/>
 </AnchorPane>

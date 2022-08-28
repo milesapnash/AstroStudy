@@ -26,13 +26,8 @@ public class RegisterController {
   @FXML
   Label passwordErrorLabel;
 
-
   private boolean validUsername(String username){
     usernameErrorLabel.setText("");
-    if (username.isEmpty()){
-      usernameErrorLabel.setText("Cannot be blank");
-      return false;
-    }
     if (username.length() < 4 || username.length() > 20){
       usernameErrorLabel.setText("Must be between 4 and 20 characters");
       return false;
@@ -46,7 +41,7 @@ public class RegisterController {
       emailErrorLabel.setText("Cannot be blank");
       return false;
     }
-    if (validateEmail(email)){
+    if (!validateEmail(email)){
       emailErrorLabel.setText("Must be a valid address");
       return false;
     }
@@ -55,10 +50,6 @@ public class RegisterController {
 
   private boolean validPassword(String password){
     passwordErrorLabel.setText("");
-    if (password.isEmpty()){
-      passwordErrorLabel.setText("Cannot be blank");
-      return false;
-    }
     if (password.length() < 4 || password.length() > 20){
       passwordErrorLabel.setText("Must be between 4 and 20 characters");
       return false;

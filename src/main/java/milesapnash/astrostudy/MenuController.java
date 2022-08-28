@@ -10,19 +10,20 @@ import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 
 public class MenuController extends DataController {
 
-  @FXML
-  private Label userLabel;
   private User currentUser;
 
   @FXML
-  void toStart(ActionEvent event) {
-    switchScene(event, "main");
-  }
+  private Label userLabel;
 
   @Override
   <T> void parseData(T data) {
     currentUser = (User) data;
     userLabel.setText("Welcome, " + currentUser.toString());
+  }
+
+  @FXML
+  void toStart(ActionEvent event) {
+    switchScene(event, "main");
   }
 
   @FXML
