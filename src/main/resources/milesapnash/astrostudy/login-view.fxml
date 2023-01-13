@@ -17,7 +17,7 @@
     <Button id="forgottenButton" layoutX="260.0" layoutY="250.0"
             mnemonicParsing="false" onAction="#forgottenPassword"
             text="Forgotten?"/>
-    <Button layoutX="44.0" layoutY="301.0" mnemonicParsing="false"
+    <Button fx:id="loginButton" layoutX="44.0" layoutY="301.0" mnemonicParsing="false"
             onAction="#attemptLogin" prefHeight="48.0" prefWidth="311.0"
             text="Log In"/>
     <TextField fx:id="usernameField" layoutX="54.0" layoutY="120.0"

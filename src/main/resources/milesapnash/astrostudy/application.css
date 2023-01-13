@@ -73,3 +73,9 @@
     -fx-font-weight: bold;
     -fx-alignment: center;
 }
+
+#answer {
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}

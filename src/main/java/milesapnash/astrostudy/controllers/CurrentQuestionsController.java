@@ -16,7 +16,7 @@ import java.util.Objects;
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 import static milesapnash.astrostudy.MockAPI.getTopics;
 
-public class CurrentQuestionsController extends DataController {
+public class CurrentQuestionsController implements DataController {
 
   private final ObservableList<String> topics =
       FXCollections.observableArrayList(
@@ -80,7 +80,7 @@ public class CurrentQuestionsController extends DataController {
     currentQuestions = MockAPI.getAllTopicQuestions(topicBox.getValue());
 
     for (Question q : currentQuestions){
-      questions.add(q.text());
+      questions.add("Q: " + q.text() + "  A: " + q.answer());
     }
     questionList.setItems(questions);
   }
@@ -98,9 +98,9 @@ public class CurrentQuestionsController extends DataController {
   @FXML
   public void delete(ActionEvent event){
     final String topic = topicBox.getSelectionModel().getSelectedItem();
-    if (!Objects.equals(topic, "")){
-      MockAPI.deleteQuestion(topic, currentQuestions.get(questionList.getSelectionModel().getSelectedIndex()).id());
-    }
+//    if (!Objects.equals(topic, "")){
+//      MockAPI.deleteQuestion(topic, currentQuestions.get(questionList.getSelectionModel().getSelectedIndex()).id());
+//    }
     reloadQuestions();
   }
 

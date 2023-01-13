@@ -2,14 +2,14 @@ package milesapnash.astrostudy;
 
 import java.util.Objects;
 
-public record Question(String text, String answer, String[] options, String topic, int id) {
+public record Question(String text, String answer, String topic) {
 
   public static Question blankQuestion() {
-    return new Question("", "", new String[]{"", "", ""}, "", -1);
+    return new Question("", "", "");
   }
 
   public static Question exampleQuestion() {
-    return new Question("What is the first moon on Earth?", "Moon", new String[]{"Galileo", "Saturn", "Titan"}, "Telescopes", 99);
+    return new Question("Who is the best football player of all time?", "Craig Dawson", "Truth");
   }
 
   @Override
@@ -17,11 +17,11 @@ public record Question(String text, String answer, String[] options, String topi
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Question question = (Question) o;
-    return id == question.id && topic.equals(question.topic);
+    return Objects.equals(text, question.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(topic, id);
+    return Objects.hash(text);
   }
 }

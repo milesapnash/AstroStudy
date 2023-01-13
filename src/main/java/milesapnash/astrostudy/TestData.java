@@ -2,4 +2,4 @@ package milesapnash.astrostudy;
 
 import java.util.List;
 
-public record TestData(User user, List<Question> questions) {}
+public record TestData(User user, List<Question> questions) { }

@@ -4,21 +4,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import milesapnash.astrostudy.*;
+import javafx.scene.control.TextField;
+import javafx.scene.paint.Paint;
+import milesapnash.astrostudy.MockAPI;
+import milesapnash.astrostudy.Question;
+import milesapnash.astrostudy.TestData;
+import milesapnash.astrostudy.User;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 
-public class TestViewController extends DataController {
+public class TestViewController implements DataController {
   private List<Question> questions;
+  private Question currentQuestion;
   private final List<Boolean> results = new ArrayList<>();
-  private final Button[] buttons = new Button[4];
-  private boolean chosen = false;
   private User currentUser;
-  private int answerIndex = 4;
   private int currentIndex = 1;
 
   @FXML
@@ -26,25 +29,19 @@ public class TestViewController extends DataController {
   @FXML
   Label questionLabel;
   @FXML
-  Button answerButton1;
+  Label answerLabel;
   @FXML
-  Button answerButton2;
+  TextField inputTextField;
   @FXML
-  Button answerButton3;
+  Button skipButton;
   @FXML
-  Button answerButton4;
-  @FXML
-  Button progressButton;
+  Button nextQuestionButton;
 
   @Override
   public <T> void parseData(T data) {
     TestData testData = (TestData) data;
     currentUser = testData.user();
     questions = testData.questions();
-    buttons[0] = answerButton1;
-    buttons[1] = answerButton2;
-    buttons[2] = answerButton3;
-    buttons[3] = answerButton4;
 
     if (!questions.isEmpty()){
       setupQuestion();
@@ -52,50 +49,74 @@ public class TestViewController extends DataController {
   }
 
   public void setupQuestion(){
-    progressButton.setVisible(false);
-    displayQuestion(questions.get(currentIndex - 1));
+    setVisibility(true);
+    currentQuestion = questions.get(currentIndex - 1);
+
+    questionLabel.setText(MockAPI.getTopicText(currentQuestion));
+    answerLabel.setText(currentQuestion.answer());
+    inputTextField.setText("");
+
     numberLabel.setText(currentIndex + "/" + questions.size());
+
+    inputTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+      if (levenshteinDistance(inputTextField.getText().toLowerCase(), currentQuestion.answer().toLowerCase()) < 1){
+        questionAnswered();
+        }
+    });
   }
 
-  public void displayQuestion(Question question){
-    questionLabel.setText(question.text());
-    answerIndex = new Random().nextInt(4);
-    int option = 0;
+  private void setVisibility(Boolean userInput){
+    skipButton.setVisible(userInput);
+    inputTextField.setVisible(userInput);
+    nextQuestionButton.setVisible(!userInput);
+    answerLabel.setVisible(!userInput);
+  }
 
-    for (int i = 0; i < 4; i++){
-      if (i == answerIndex){
-        buttons[i].setText(question.answer());
-      } else {
-        buttons[i].setText(question.options()[option]);
-        option++;
+  private int levenshteinDistance(String x, String y){
+    final int[][] dp = new int[x.length() + 1][y.length() + 1];
+    for (int i = 0; i <= x.length(); i++) {
+      for (int j = 0; j <= y.length(); j++) {
+        if (i == 0) {
+          dp[i][j] = j;
+        }
+        else if (j == 0) {
+          dp[i][j] = i;
+        }
+        else {
+          dp[i][j] = min(dp[i - 1][j - 1]
+                  + costOfSubstitution(x.charAt(i - 1), y.charAt(j - 1)),
+              dp[i - 1][j] + 1,
+              dp[i][j - 1] + 1);
+        }
       }
-      buttons[i].setStyle("-fx-background-color: #ffffff");
     }
+    return dp[x.length()][y.length()];
   }
 
-  public void checkAnswer(int index){
-    if (!chosen){
-      if (index != answerIndex){
-        buttons[index].setStyle("-fx-background-color: #ff0000");
-      }
-      buttons[answerIndex].setStyle("-fx-background-color: #00ff00");
-      results.add(index == answerIndex);
-      progressButton.setVisible(true);
-      chosen = true;
-    }
+  public static int costOfSubstitution(char a, char b) {
+    return a == b ? 0 : 1;
+  }
+
+  public static int min(int... numbers) {
+    return Arrays.stream(numbers)
+        .min().orElse(Integer.MAX_VALUE);
+  }
+
+
+  private void questionAnswered(){
+    setVisibility(false);
+
+    answerLabel.setTextFill(Paint.valueOf("#90ee90"));
+    results.add(true);
   }
 
   @FXML
-  public void button1Pressed(ActionEvent event){checkAnswer(0);}
+  public void questionSkipped(ActionEvent event){
+    setVisibility(false);
 
-  @FXML
-  public void button2Pressed(ActionEvent event){checkAnswer(1);}
-
-  @FXML
-  public void button3Pressed(ActionEvent event){checkAnswer(2);}
-
-  @FXML
-  public void button4Pressed(ActionEvent event){checkAnswer(3);}
+    answerLabel.setTextFill(Paint.valueOf("red"));
+    results.add(false);
+  }
 
   @FXML
   public void toNext(ActionEvent event){
@@ -104,7 +125,6 @@ public class TestViewController extends DataController {
       switchScene(event, "menu", currentUser);
     } else {
       currentIndex++;
-      chosen = false;
       setupQuestion();
     }
   }

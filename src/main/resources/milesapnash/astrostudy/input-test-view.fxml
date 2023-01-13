@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="milesapnash.astrostudy.controllers.TestViewController">
+    <Label id="subtext" fx:id="numberLabel" layoutX="14.0" layoutY="14.0"/>
+    <Label id="subtext" fx:id="questionLabel" layoutY="41.0" prefHeight="18.0" prefWidth="400.0"/>
+    <TextField fx:id="inputTextField" alignment="CENTER" layoutX="85.0" layoutY="207.0"
+               prefHeight="25.0" prefWidth="231.0" promptText="Answer"/>
+    <Button fx:id="nextQuestionButton" layoutX="105.0" layoutY="319.0" mnemonicParsing="false"
+            onAction="#toNext" prefHeight="48.0" prefWidth="190.0" text="Next Question"/>
+    <Button id="selectedButton" fx:id="skipButton" layoutX="300.0" layoutY="300.0"
+            mnemonicParsing="false" onAction="#questionSkipped" text="Skip →"/>
+    <Label id="answer" fx:id="answerLabel" layoutX="1.0" layoutY="198.0"
+           prefHeight="18.0" prefWidth="400.0" textAlignment="CENTER">
+    </Label>
+</AnchorPane>

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import milesapnash.astrostudy.MockAPI;
 import milesapnash.astrostudy.User;
 
 import java.util.regex.Matcher;
@@ -12,7 +13,7 @@ import java.util.regex.Pattern;
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 import static milesapnash.astrostudy.AstroStudyApplication.validateEmail;
 
-public class RegisterController {
+public class RegisterController implements DataController {
 
   @FXML
   TextField usernameField;
@@ -26,6 +27,11 @@ public class RegisterController {
   Label emailErrorLabel;
   @FXML
   Label passwordErrorLabel;
+
+  @Override
+  public <T> void parseData(T data) {
+    //TODO
+  }
 
   private boolean validUsername(String username){
     usernameErrorLabel.setText("");
@@ -70,15 +76,18 @@ public class RegisterController {
     final boolean eValid = validEmail(emailField.getText());
     final boolean pValid = validPassword(passwordField.getText());
     if (uValid && eValid && pValid){
-      // Check username doesn't already exist + email not in use
-      // Attempt to create account
-      User u = new User(username, 0);
-      switchScene(event, "menu", u);
+      if (MockAPI.register(username, passwordField.getText())){
+        User u = new User(username, 0);
+        switchScene(event, "menu", u);
+      } else {
+        passwordErrorLabel.setText("Invalid Username");
+      }
     }
   }
 
   @FXML
   void toLogin(ActionEvent event) {
-    switchScene(event, "login");
+    switchScene(event, "login", null);
   }
+
 }

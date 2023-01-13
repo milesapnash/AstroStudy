@@ -19,6 +19,32 @@ public class AstroStudyApplication extends Application {
     launch();
   }
 
+  @Override
+  public void start(Stage stage) {
+    try {
+      final FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
+      final Parent root = loader.load();
+      final Scene scene = new Scene(root);
+      final URL url = this.getClass().getResource("application.css");
+
+      if (url == null) {
+        System.out.println("CSS Resource not found.");
+        System.exit(-1);
+      }
+
+      stage.setTitle("AstroStudy");
+      stage.getIcons().add(new Image("file:icon.png"));
+      stage.setResizable(false);
+
+      scene.getStylesheets().add(url.toExternalForm());
+      stage.setScene(scene);
+      stage.show();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
   public static void switchScene(ActionEvent event, String fileName){
     final Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     try {
@@ -59,33 +85,6 @@ public class AstroStudyApplication extends Application {
       scene.getStylesheets().add(url.toExternalForm());
       stage.setScene(scene);
       stage.show();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-
-  @Override
-  public void start(Stage stage) {
-    try {
-      final FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
-      final Parent root = loader.load();
-      final Scene scene = new Scene(root);
-      final URL url = this.getClass().getResource("application.css");
-
-      if (url == null) {
-        System.out.println("CSS Resource not found.");
-        System.exit(-1);
-      }
-
-      stage.setTitle("AstroStudy");
-      stage.getIcons().add(new Image("file:icon.png"));
-      stage.setResizable(false);
-
-      scene.getStylesheets().add(url.toExternalForm());
-      stage.setScene(scene);
-      stage.show();
-
     } catch (Exception e) {
       e.printStackTrace();
     }

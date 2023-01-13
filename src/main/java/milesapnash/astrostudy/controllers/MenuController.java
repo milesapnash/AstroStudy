@@ -3,6 +3,7 @@ package milesapnash.astrostudy.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import milesapnash.astrostudy.MockAPI;
 import milesapnash.astrostudy.Question;
 import milesapnash.astrostudy.TestData;
 import milesapnash.astrostudy.User;
@@ -11,7 +12,7 @@ import java.util.List;
 
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 
-public class MenuController extends DataController {
+public class MenuController implements DataController {
 
   private User currentUser;
 
@@ -22,6 +23,7 @@ public class MenuController extends DataController {
   public <T> void parseData(T data) {
     currentUser = (User) data;
     userLabel.setText("Welcome, " + currentUser.toString());
+    MockAPI.buildQuestionMap();
   }
 
   @FXML
@@ -43,6 +45,6 @@ public class MenuController extends DataController {
   void startQuickTest(ActionEvent event){
     List<Question> quickQuestions = List.of(Question.exampleQuestion());
     TestData testData = new TestData(currentUser, quickQuestions);
-    switchScene(event, "test", testData);
+    switchScene(event, "input-test", testData);
   }
 }

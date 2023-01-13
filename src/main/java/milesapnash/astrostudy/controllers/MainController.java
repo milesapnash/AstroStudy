@@ -9,11 +9,11 @@ public class MainController {
 
   @FXML
   void toLogin(ActionEvent event) {
-    switchScene(event, "login");
+    switchScene(event, "login", null);
   }
 
   @FXML
   void toRegister(ActionEvent event) {
-    switchScene(event, "register");
+    switchScene(event, "register", null);
   }
 }

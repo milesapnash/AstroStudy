@@ -17,7 +17,7 @@ public class ResetPasswordController {
   Label errorLabel;
 
   @FXML
-  void toLogin(ActionEvent event) {
+  void resetPassword(ActionEvent event) {
     errorLabel.setText("");
     if (validateEmail(emailField.getText())){
       MockAPI.sendResetRequest(emailField.getText());
@@ -25,5 +25,10 @@ public class ResetPasswordController {
     } else {
       errorLabel.setText("Input valid email");
     }
+  }
+
+  @FXML
+  void toLogin(ActionEvent event) {
+    switchScene(event, "login", null);
   }
 }
