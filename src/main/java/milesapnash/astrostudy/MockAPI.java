@@ -60,13 +60,34 @@ public class MockAPI {
     return questions.get(topic);
   }
 
+  public static List<Question> getTopicQuestions(String topic, int maxQs){
+    List<Question> topicQuestions = getAllTopicQuestions(topic);
+    Collections.shuffle(topicQuestions);
+    if (topicQuestions.size() > maxQs){
+      return topicQuestions.stream().limit(maxQs).toList();
+    } else {
+      return topicQuestions;
+    }
+  }
+
+  public static List<Question> getRandomQuestions(int maxQs){
+    List<Question> questions = new ArrayList<>();
+
+    for (String topic : getTopics()){
+      questions.addAll(getAllTopicQuestions(topic));
+    }
+
+    Collections.shuffle(questions);
+    if (questions.size() > maxQs){
+      return questions.stream().limit(maxQs).toList();
+    } else {
+      return questions;
+    }
+  }
+
   public static List<String> getTopics(){
     return questions.keySet().stream().toList();
   }
-
-  public static void sendResults(List<Boolean> results, User user){}
-
-  public static void sendResetRequest(String email){}
 
   public static void deleteQuestion(String topic, int id){
    // return questions.get(topic).remove(new Question(null,null,null,topic,id));
@@ -82,28 +103,14 @@ public class MockAPI {
 //    topicQuestions.add(question);
   }
 
-  public static List<Question> getTopicQuestions(String topic, int maxQs){
-    List<Question> topicQuestions = getAllTopicQuestions(topic);
-    Collections.shuffle(topicQuestions);
-    if (topicQuestions.size() > maxQs){
-      return topicQuestions.stream().limit(maxQs).toList();
-    } else {
-      return topicQuestions;
-    }
-  }
+  public static void sendResults(List<Boolean> results, User user){}
 
-  public static String getTopicText(Question question){
-    if (Objects.equals(question.topic(), "capitals")){
-      return "What is the capital of " + question.text() + "?";
-    }
-    return question.text();
-  }
+  public static void sendResetRequest(String email){}
 }
 
 
 // TODO:
 //  REGISTER: Grey button until all fields valid - red fields if otherwise
-//  QUICKTEST: Select 10 random qs from bank
 //  TEST: Add timer? Add summary screen? Add user results?
 //  VIEWQUESTIONS: Capitalise topic box + make Q/A GUI better
 //  EDITQUESTION: Capitalise topic box + reimplement functionality

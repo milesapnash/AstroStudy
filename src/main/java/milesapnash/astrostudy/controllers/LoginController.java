@@ -9,9 +9,10 @@ import javafx.scene.control.TextField;
 import milesapnash.astrostudy.MockAPI;
 import milesapnash.astrostudy.User;
 
+import static milesapnash.astrostudy.AstroStudyApplication.setupScene;
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 
-public class LoginController implements DataController  {
+public class LoginController implements SetupController  {
   private boolean loginEnabled = false;
 
   @FXML
@@ -24,7 +25,7 @@ public class LoginController implements DataController  {
   Label errorLabel;
 
   @Override
-  public <A> void parseData(A data) {
+  public void setup() {
     disableButton();
 
     usernameField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -51,26 +52,21 @@ public class LoginController implements DataController  {
   }
 
   private void disableButton(){
-    loginButton.setStyle("-fx-background-color: gray ");
+    loginButton.setStyle("-fx-background-color: grey ");
     loginButton.setDisable(true);
     loginEnabled = false;
   }
 
   @FXML
   void attemptLogin(ActionEvent event) {
+    if (!loginEnabled){
+      return;
+    }
+
     String username = usernameField.getText();
-    String password = passwordField.getText();
     errorLabel.setText("");
 
-    if (username.isEmpty()){
-      errorLabel.setText("Username cannot be blank");
-      return;
-    }
-    if (password.isEmpty()){
-      errorLabel.setText("Password cannot be blank");
-      return;
-    }
-    int id = MockAPI.login(username,password);
+    int id = MockAPI.login(username, passwordField.getText());
     if (id >= 0) {
       User u = new User(username, id);
       switchScene(event, "menu", u);
@@ -81,7 +77,7 @@ public class LoginController implements DataController  {
 
   @FXML
   void toSignUp(ActionEvent event) {
-    switchScene(event, "register", null);
+    setupScene(event, "register");
   }
 
   @FXML

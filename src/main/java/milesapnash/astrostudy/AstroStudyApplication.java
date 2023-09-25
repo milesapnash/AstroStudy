@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import milesapnash.astrostudy.controllers.DataController;
+import milesapnash.astrostudy.controllers.SetupController;
 
 import java.net.URL;
 import java.util.regex.Matcher;
@@ -81,6 +82,30 @@ public class AstroStudyApplication extends Application {
 
       DataController controller = loader.getController();
       controller.parseData(data);
+
+      scene.getStylesheets().add(url.toExternalForm());
+      stage.setScene(scene);
+      stage.show();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static <T> void setupScene(ActionEvent event, String fileName){
+    final Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+    try {
+      final FXMLLoader loader = new FXMLLoader(AstroStudyApplication.class.getResource(fileName + "-view.fxml"));
+      final Parent root = loader.load();
+      final Scene scene = new Scene(root);
+      final URL url = AstroStudyApplication.class.getResource("application.css");
+
+      if (url == null) {
+        System.out.println("CSS Resource not found.");
+        System.exit(-1);
+      }
+
+      SetupController controller = loader.getController();
+      controller.setup();
 
       scene.getStylesheets().add(url.toExternalForm());
       stage.setScene(scene);

@@ -13,7 +13,6 @@ import java.util.List;
 import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
 
 public class MenuController implements DataController {
-
   private User currentUser;
 
   @FXML
@@ -43,7 +42,7 @@ public class MenuController implements DataController {
 
   @FXML
   void startQuickTest(ActionEvent event){
-    List<Question> quickQuestions = List.of(Question.exampleQuestion());
+    List<Question> quickQuestions = MockAPI.getRandomQuestions(10);
     TestData testData = new TestData(currentUser, quickQuestions);
     switchScene(event, "input-test", testData);
   }

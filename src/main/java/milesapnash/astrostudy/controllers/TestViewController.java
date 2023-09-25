@@ -52,7 +52,7 @@ public class TestViewController implements DataController {
     setVisibility(true);
     currentQuestion = questions.get(currentIndex - 1);
 
-    questionLabel.setText(MockAPI.getTopicText(currentQuestion));
+    questionLabel.setText(currentQuestion.getTopicText());
     answerLabel.setText(currentQuestion.answer());
     inputTextField.setText("");
 
@@ -111,7 +111,7 @@ public class TestViewController implements DataController {
   }
 
   @FXML
-  public void questionSkipped(ActionEvent event){
+  public void questionSkipped(){
     setVisibility(false);
 
     answerLabel.setTextFill(Paint.valueOf("red"));

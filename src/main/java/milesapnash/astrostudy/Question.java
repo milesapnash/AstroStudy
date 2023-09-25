@@ -12,6 +12,13 @@ public record Question(String text, String answer, String topic) {
     return new Question("Who is the best football player of all time?", "Craig Dawson", "Truth");
   }
 
+  public String getTopicText(){
+    if (Objects.equals(topic, "capitals")){
+      return "What is the capital of " + text + "?";
+    }
+    return text;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

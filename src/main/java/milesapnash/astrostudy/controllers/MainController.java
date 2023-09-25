@@ -3,17 +3,17 @@ package milesapnash.astrostudy.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
+import static milesapnash.astrostudy.AstroStudyApplication.setupScene;
 
 public class MainController {
 
   @FXML
   void toLogin(ActionEvent event) {
-    switchScene(event, "login", null);
+    setupScene(event, "login");
   }
 
   @FXML
   void toRegister(ActionEvent event) {
-    switchScene(event, "register", null);
+    setupScene(event, "register");
   }
 }

@@ -4,7 +4,7 @@ A recreation of my A Level Computing coursework in Java, originally built using 
 Forms.
 
 My original [final report](doc/report.pdf) can be found in the `/doc` folder, which was developed
-from 2019-2020 and earned a final grade of 96%.
+from 2019-2020 and earned a final grade of 72/75 (96%).
 
 I decided to rebuild this project using JavaFX to gain more experience with the framework and build
 on my Java skills, but also to see how I would improve on the code I wrote the first time.

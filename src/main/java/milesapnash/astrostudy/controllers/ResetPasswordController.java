@@ -6,8 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import milesapnash.astrostudy.MockAPI;
 
-import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
-import static milesapnash.astrostudy.AstroStudyApplication.validateEmail;
+import static milesapnash.astrostudy.AstroStudyApplication.*;
 
 public class ResetPasswordController {
 
@@ -29,6 +28,6 @@ public class ResetPasswordController {
 
   @FXML
   void toLogin(ActionEvent event) {
-    switchScene(event, "login", null);
+    setupScene(event, "login");
   }
 }

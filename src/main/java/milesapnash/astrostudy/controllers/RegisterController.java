@@ -10,10 +10,9 @@ import milesapnash.astrostudy.User;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static milesapnash.astrostudy.AstroStudyApplication.switchScene;
-import static milesapnash.astrostudy.AstroStudyApplication.validateEmail;
+import static milesapnash.astrostudy.AstroStudyApplication.*;
 
-public class RegisterController implements DataController {
+public class RegisterController implements SetupController {
 
   @FXML
   TextField usernameField;
@@ -29,7 +28,7 @@ public class RegisterController implements DataController {
   Label passwordErrorLabel;
 
   @Override
-  public <T> void parseData(T data) {
+  public void setup() {
     //TODO
   }
 
@@ -87,7 +86,7 @@ public class RegisterController implements DataController {
 
   @FXML
   void toLogin(ActionEvent event) {
-    switchScene(event, "login", null);
+    setupScene(event, "login");
   }
 
 }
