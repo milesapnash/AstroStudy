@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.*;
 
 public class MockAPI {
@@ -29,22 +30,29 @@ public class MockAPI {
   }
 
   public static void buildQuestionMap(){
-    final String directoryName = "src/main/resources/milesapnash/astrostudy/questions/";
+    final String resourceDir = "questions/";
     final String splitOn = ",";
-    final File[] topicFiles = new File(directoryName).listFiles();
 
-    if (topicFiles != null){
+    try {
+      var dirUrl = MockAPI.class.getResource(resourceDir);
+      if (dirUrl == null) return;
+
+      final File[] topicFiles = new File(dirUrl.toURI()).listFiles();
+      if (topicFiles == null) return;
+
       for (final File questionsFile : topicFiles) {
         final String fileName = questionsFile.getName();
         final String topic = fileName.substring(0, fileName.lastIndexOf('.'));
         final List<Question> topicQuestions = new ArrayList<>();
 
-        try {
+        try (BufferedReader br = new BufferedReader(new FileReader(questionsFile))) {
           String line;
-          BufferedReader br = new BufferedReader(new FileReader(directoryName + fileName));
           while ((line = br.readLine()) != null){
-            String[] questionText = line.split(splitOn);
-            Question q = new Question(questionText[0], questionText[1], topic);
+            int separator = line.indexOf(splitOn);
+            if (separator < 0) continue;
+            String questionText = line.substring(0, separator);
+            String answerText = line.substring(separator + 1);
+            Question q = new Question(questionText, answerText, topic);
             topicQuestions.add(q);
           }
         } catch (IOException e) {
@@ -53,6 +61,8 @@ public class MockAPI {
 
         questions.put(topic, topicQuestions);
       }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
   }
 
@@ -61,7 +71,9 @@ public class MockAPI {
   }
 
   public static List<Question> getTopicQuestions(String topic, int maxQs){
-    List<Question> topicQuestions = getAllTopicQuestions(topic);
+    List<Question> allQuestions = getAllTopicQuestions(topic);
+    if (allQuestions == null) return List.of();
+    List<Question> topicQuestions = new ArrayList<>(allQuestions);
     Collections.shuffle(topicQuestions);
     if (topicQuestions.size() > maxQs){
       return topicQuestions.stream().limit(maxQs).toList();
@@ -74,7 +86,8 @@ public class MockAPI {
     List<Question> questions = new ArrayList<>();
 
     for (String topic : getTopics()){
-      questions.addAll(getAllTopicQuestions(topic));
+      List<Question> topicQs = getAllTopicQuestions(topic);
+      if (topicQs != null) questions.addAll(topicQs);
     }
 
     Collections.shuffle(questions);

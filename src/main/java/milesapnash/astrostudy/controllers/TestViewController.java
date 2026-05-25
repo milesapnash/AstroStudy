@@ -11,6 +11,8 @@ import milesapnash.astrostudy.Question;
 import milesapnash.astrostudy.TestData;
 import milesapnash.astrostudy.User;
 
+import javafx.beans.value.ChangeListener;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,6 +25,7 @@ public class TestViewController implements DataController {
   private final List<Boolean> results = new ArrayList<>();
   private User currentUser;
   private int currentIndex = 1;
+  private ChangeListener<String> inputListener;
 
   @FXML
   Label numberLabel;
@@ -43,7 +46,7 @@ public class TestViewController implements DataController {
     currentUser = testData.user();
     questions = testData.questions();
 
-    if (!questions.isEmpty()){
+    if (questions != null && !questions.isEmpty()){
       setupQuestion();
     }
   }
@@ -58,11 +61,15 @@ public class TestViewController implements DataController {
 
     numberLabel.setText(currentIndex + "/" + questions.size());
 
-    inputTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-      if (levenshteinDistance(inputTextField.getText().toLowerCase(), currentQuestion.answer().toLowerCase()) < 1){
+    if (inputListener != null) {
+      inputTextField.textProperty().removeListener(inputListener);
+    }
+    inputListener = (observable, oldValue, newValue) -> {
+      if (levenshteinDistance(inputTextField.getText().toLowerCase(), currentQuestion.answer().toLowerCase()) <= 1) {
         questionAnswered();
-        }
-    });
+      }
+    };
+    inputTextField.textProperty().addListener(inputListener);
   }
 
   private void setVisibility(Boolean userInput){

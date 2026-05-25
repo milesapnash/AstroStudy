@@ -29,12 +29,11 @@ public class AstroStudyApplication extends Application {
       final URL url = this.getClass().getResource("application.css");
 
       if (url == null) {
-        System.out.println("CSS Resource not found.");
-        System.exit(-1);
+        throw new RuntimeException("CSS Resource not found.");
       }
 
       stage.setTitle("AstroStudy");
-      stage.getIcons().add(new Image("file:icon.png"));
+      stage.getIcons().add(new Image(getClass().getResourceAsStream("icon.png")));
       stage.setResizable(false);
 
       scene.getStylesheets().add(url.toExternalForm());
@@ -55,8 +54,7 @@ public class AstroStudyApplication extends Application {
       final URL url = AstroStudyApplication.class.getResource("application.css");
 
       if (url == null) {
-        System.out.println("CSS Resource not found.");
-        System.exit(-1);
+        throw new RuntimeException("CSS Resource not found.");
       }
 
       scene.getStylesheets().add(url.toExternalForm());
@@ -76,8 +74,7 @@ public class AstroStudyApplication extends Application {
       final URL url = AstroStudyApplication.class.getResource("application.css");
 
       if (url == null) {
-        System.out.println("CSS Resource not found.");
-        System.exit(-1);
+        throw new RuntimeException("CSS Resource not found.");
       }
 
       DataController controller = loader.getController();
@@ -100,8 +97,7 @@ public class AstroStudyApplication extends Application {
       final URL url = AstroStudyApplication.class.getResource("application.css");
 
       if (url == null) {
-        System.out.println("CSS Resource not found.");
-        System.exit(-1);
+        throw new RuntimeException("CSS Resource not found.");
       }
 
       SetupController controller = loader.getController();
@@ -116,7 +112,7 @@ public class AstroStudyApplication extends Application {
   }
 
   public static boolean validateEmail(String input){
-    final Matcher emailMatcher = Pattern.compile("^(.+)@(.+)$").matcher(input);
+    final Matcher emailMatcher = Pattern.compile("^[\\w.+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$").matcher(input);
     return emailMatcher.find();
   }
 }

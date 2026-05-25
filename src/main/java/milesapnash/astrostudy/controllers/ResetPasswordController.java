@@ -20,7 +20,7 @@ public class ResetPasswordController {
     errorLabel.setText("");
     if (validateEmail(emailField.getText())){
       MockAPI.sendResetRequest(emailField.getText());
-      switchScene(event, "login");
+      setupScene(event, "login");
     } else {
       errorLabel.setText("Input valid email");
     }

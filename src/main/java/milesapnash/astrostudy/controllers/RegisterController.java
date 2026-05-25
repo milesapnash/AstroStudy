@@ -79,7 +79,7 @@ public class RegisterController implements SetupController {
         User u = new User(username, 0);
         switchScene(event, "menu", u);
       } else {
-        passwordErrorLabel.setText("Invalid Username");
+        usernameErrorLabel.setText("Username already taken");
       }
     }
   }
