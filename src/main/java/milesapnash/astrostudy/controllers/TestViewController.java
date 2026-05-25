@@ -79,7 +79,7 @@ public class TestViewController implements DataController {
     answerLabel.setVisible(!userInput);
   }
 
-  private int levenshteinDistance(String x, String y){
+  static int levenshteinDistance(String x, String y){
     final int[][] dp = new int[x.length() + 1][y.length() + 1];
     for (int i = 0; i <= x.length(); i++) {
       for (int j = 0; j <= y.length(); j++) {
